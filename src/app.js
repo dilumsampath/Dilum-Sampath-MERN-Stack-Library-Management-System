@@ -3,6 +3,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import logger from "./utils/logger";
+import { connect } from "./utils/database.connection";
 
 const app = express();
 const PORT = process.env.PORT || "8090";
@@ -16,5 +18,6 @@ app.get("/", (req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is up and running on port ${PORT}`);
+  logger.info(`Server is up and running on port ${PORT}`);
+  connect();
 });
